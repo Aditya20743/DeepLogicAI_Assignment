@@ -3,6 +3,8 @@
 
 # Problems faced
 1) Pdf does not contain accessible metadata so we have to apply ocr to get the text
+2) sample images not getting recognised by tesseract have to apply config
+
 
 # Technologies Used
 1) latest Python 3.12.2 

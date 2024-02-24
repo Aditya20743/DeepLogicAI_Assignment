@@ -1,36 +1,94 @@
-D. Brawn Manufacture
+"OCR Result (Page 1, Image 1):"
+; 14
 ""
-Invoice no. DVT-AX-345678
+Databases
 ""
-Payment date: 03/12/2006
+"f you profess knowledge of databases, you might be asked some questions on it, We'll review some of the key concepts and"
+"‘offer an overview of how to approach these problems. As you read these queries, don’t be surprised by minor variations in"
+"syntax. There are a variety of flavors of SQL, and you might have worked with a slightly different one. The examples in this book"
 ""
-Reference Designation Qty Unit price = Total CHF Sales
-Work
-SERVICE D COMPLETE OVERHAUL 1 5500.00 5500.00 220
-SERVICE D REFRESHING COMPLETE CASE 1 380.00 380.00 220
-AND RHODIUM BATH
-Exterior parts:
-JO.297.065.FP FLAT GASKET 1 3.00 3.00 220
-JO.197.075.FP FLAT GASKET 1 4.00 4.00 220
-JO.199.059.0S FLAT ROUND GASKET 1 6.00 6.00 220
-V1I.261.036.BC W.G.FIXATION SCREWS 10 4.00 40.00 220
-"Al.465.055.BC WHITE GOLD ""FOIL"" 1 70.00 70.00 220"
-PAIR OF HAND
-LENGTH: 10/13.50MM
-CALIBRE 2868
-SPECIAL DISCOUNT -3003.00 -3003.00
-Discount -900.00 -900.00
-Total CHF 2100.00
-RETURN AFTER REPAIR
-NO COMMERCIAL VALUE
-Payment:
-Mr. John Doe
+have been tested against Microsoft SQL Server.
 ""
-"Green Street 15, Office 4"
+p> SQL Syntax and Variations
+"implicit and explicit joins are shown below, These two statements are equivalent, and it’s a matter of personal preference which"
 ""
-1234 Vermut
+"one you choose. For consistency, we will stick to the explicit join."
 ""
-New Caledonia
+Price
 ""
-Credit Card: Visa
-Card No: 112345678
+"SELECT CourseName, TeacherName"
+""
++
+"2 FROM Courses, Teachers"
+3 WHERE Courses.TeacherID = Teachers. TeacherID
+""
+"4 SELECT CourseName, TeacherName"
+2 FROM Courses INNER JOIN Teachers
+"3 ON Courses,TeacherID = Teachers.TeacherID"
+""
+> Denormalized vs. Normalized Databases
+""
+"Normalized databases are designed to minimize redundancy, while denormalized databi"
+"5 and Teachers, Courses might contain a column called"
+"that information about the teacher (name, address, etc) is"
+""
+ases are designed to optimize read time.
+""
+in a traditional normalized database with data like Course:
+""
+"Teacher ID, which is a foreign key to Teacher. One benefit of this is"
+""
+cInt only stored once in the database. The drawback is that many common queries will require expensive joins.
+ger)
+""
+"Instead, we can denormalize the database by storing redundant data. For ‘example, if we knew that we would have to repeat this"
+""
+"query often, we might store the teacher’s name in the Courses table, Denormalization is commonly used to create highly scal-"
+""
+able systems.
+""
+f > SQL Statements
+"Let's walk through a review of basic SQL syntax,"
+the following simple structure (* indicates a primary key):
+""
+"Courses: CourseID*, CourseName, TeacherID"
+"Teachers: TeacherID*, TeacherName"
+"Students: StudentID*, StudentName"
+"StudentCourses: CourseID*, StudentID*"
+""
+"Using the above table, implement the following queries."
+""
+using as an example the database that was mentioned earlier. This database has
+""
+Query 1: Student Enrollment
+""
+Implement a query to get a list of all students and how many courses each student is enrolled in.
+""
+"At first, we might try something like this:"
+""
+/* Incorrect Code */
+""
+"SELECT Students.StudentName, count(*)"
+""
+FROM Students INNER JOIN StudentCourses
+""
+ON Students.StudentID = StudentCourses .StudentID
+""
+} GROUP BY Students.StudentID
+j This has three problems:
+""
+"1, We have excluded student"
+We need to change this to a LEFT
+""
+aan
+""
+"s who are not enrolled in any courses, since StudentCourses only includes enrolled students."
+""
+JOIN.
+the query is still not quite right. Doing count (*) would return how many items there
+""
+"2. Even ifwe changed ittoa LEFT JOIN,"
+CrackingTheCodinginterview.com | 6th Edition (India) 123
+""
+""
+""
