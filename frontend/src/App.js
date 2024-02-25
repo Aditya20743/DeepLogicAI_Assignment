@@ -13,7 +13,7 @@ function App() {
     formData.append('file', file);
 
     try {
-      const response = await fetch('http://localhost:3001/upload', {
+      const response = await fetch('https://deeplogicai-assignment.onrender.com/upload', {
         method: 'POST',
         body: formData,
       });
